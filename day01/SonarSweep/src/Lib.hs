@@ -4,8 +4,11 @@ module Lib
 where
 
 numDepthIncreases :: Ord a => [a] -> Int
-numDepthIncreases [] = 0
-numDepthIncreases [_] = 0
-numDepthIncreases (x : y : xs) =
-  let next = numDepthIncreases (y : xs)
-   in if y > x then 1 + next else next
+numDepthIncreases = numDepthIncreases' 0
+  where
+    numDepthIncreases' acc [] = acc
+    numDepthIncreases' acc [_] = acc
+    numDepthIncreases' acc' (x : x' : xs') =
+      if x' > x
+        then numDepthIncreases' (acc' + 1) (x' : xs')
+        else numDepthIncreases' (acc') (x' : xs')
