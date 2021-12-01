@@ -3,7 +3,7 @@ module Lib
   )
 where
 
-numDepthIncreases :: [Int] -> Int
+numDepthIncreases :: Ord a => [a] -> Int
 numDepthIncreases [] = 0
 numDepthIncreases [_] = 0
 numDepthIncreases (x : y : xs) =

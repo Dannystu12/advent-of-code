@@ -1,3 +1,5 @@
+{-# LANGUAGE DataKinds #-}
+
 module Main where
 
 import Lib
@@ -11,9 +13,17 @@ numDepthIncreasesTests =
   testGroup
     "numDepthIncreasesTests"
     [ testCase "No depth increases for empty list" $
-        numDepthIncreases [] @?= 0,
+        numDepthIncreases
+          ( [] ::
+              [Int]
+          )
+          @?= 0,
       testCase "No depth increases for singleton list" $
-        numDepthIncreases [] @?= 0,
+        numDepthIncreases
+          ( [] ::
+              [Int]
+          )
+          @?= 0,
       testCase "No depth increase for list of equal depths" $
         numDepthIncreases [1, 1]
           @?= 0,
