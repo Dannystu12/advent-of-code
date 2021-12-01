@@ -25,6 +25,12 @@ dependencies:
 library:
   source-dirs: src
 
+executables:
+  run-my-first-project:
+    source-dirs: app
+    main: Main.hs
+    dependencies: SonarSweep
+
 tests:
   SonarSweep-test:
     main: Spec.hs

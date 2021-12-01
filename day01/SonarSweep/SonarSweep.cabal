@@ -34,6 +34,17 @@ library
       base >=4.7 && <5
   default-language: Haskell2010
 
+executable run-my-first-project
+  main-is: Main.hs
+  other-modules:
+      Paths_SonarSweep
+  hs-source-dirs:
+      app
+  build-depends:
+      SonarSweep
+    , base >=4.7 && <5
+  default-language: Haskell2010
+
 test-suite SonarSweep-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
