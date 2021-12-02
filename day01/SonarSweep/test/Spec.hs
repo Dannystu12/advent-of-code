@@ -17,33 +17,29 @@ measurementSumsTests =
   testGroup
     "measurementSumsTests"
     [ testCase "No measurement sum for empty list" $
-        measurementSums [] @?= 0,
+        threeMeasurementFilterSums [] @?= 0,
       testCase "No measurement sum singleton list" $
-        measurementSums [d1]
+        threeMeasurementFilterSums [d1]
           @?= 0,
       testCase
-        "Basic increase F -> G and Equality check on H"
-        $ measurementSums [d8, d9]
-          @?= 1,
-      testCase
         "Basic decrease A -> B"
-        $ measurementSums [d1, d2]
+        $ threeMeasurementFilterSums [d1, d2]
           @?= 0,
       testCase
         "Sample dataset"
-        $ measurementSums [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10] @?= 5
+        $ threeMeasurementFilterSums [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10] @?= 5
     ]
   where
-    d1 = Depth 199 [A]
-    d2 = Depth 200 [A, B]
-    d3 = Depth 208 [A, B, C]
-    d4 = Depth 210 [B, C, D]
-    d5 = Depth 200 [E, C, D]
-    d6 = Depth 207 [E, F, D]
-    d7 = Depth 240 [E, F, G]
-    d8 = Depth 269 [F, G, H]
-    d9 = Depth 260 [G, H]
-    d10 = Depth 263 [H]
+    d1 = 199 :: Int
+    d2 = 200 :: Int
+    d3 = 208 :: Int
+    d4 = 210 :: Int
+    d5 = 200 :: Int
+    d6 = 207 :: Int
+    d7 = 240 :: Int
+    d8 = 269 :: Int
+    d9 = 260 :: Int
+    d10 = 263 :: Int
 
 numDepthIncreasesTests =
   testGroup

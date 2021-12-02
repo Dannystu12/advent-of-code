@@ -11,7 +11,9 @@ main = do
 
   let depths = readInts $ lines contents
 
-  print $ numDepthIncreases depths
+  putStrLn $ "Number of depth increases: " ++ (show . numDepthIncreases $ depths)
+
+
   where
     readInts :: [String] -> [Int]
     readInts = map read
