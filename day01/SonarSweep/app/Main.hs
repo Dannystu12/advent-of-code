@@ -1,7 +1,7 @@
 module Main where
 
 import Control.Monad
-import Lib (numDepthIncreases)
+import Lib (numDepthIncreases, threeMeasurementSums)
 import System.IO
 
 main :: IO ()
@@ -12,8 +12,7 @@ main = do
   let depths = readInts $ lines contents
 
   putStrLn $ "Number of depth increases: " ++ (show . numDepthIncreases $ depths)
-
-
+  putStrLn $ "Number of sliding window increases: " ++ (show . threeMeasurementSums $ depths)
   where
     readInts :: [String] -> [Int]
     readInts = map read

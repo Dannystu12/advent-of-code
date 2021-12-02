@@ -17,17 +17,21 @@ measurementSumsTests =
   testGroup
     "measurementSumsTests"
     [ testCase "No measurement sum for empty list" $
-        threeMeasurementFilterSums [] @?= 0,
+        threeMeasurementSums [] @?= 0,
       testCase "No measurement sum singleton list" $
-        threeMeasurementFilterSums [d1]
+        threeMeasurementSums [d1]
           @?= 0,
       testCase
+        "Basic increase B -> C"
+        $ threeMeasurementSums [d1, d2, d3, d4]
+          @?= 1,
+      testCase
         "Basic decrease A -> B"
-        $ threeMeasurementFilterSums [d1, d2]
+        $ threeMeasurementSums [d1, d2]
           @?= 0,
       testCase
         "Sample dataset"
-        $ threeMeasurementFilterSums [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10] @?= 5
+        $ threeMeasurementSums [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10] @?= 5
     ]
   where
     d1 = 199 :: Int
