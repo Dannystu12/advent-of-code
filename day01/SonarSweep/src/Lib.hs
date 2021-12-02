@@ -7,9 +7,6 @@ module Lib
   )
 where
 
-import Data.Map (Map, elems, empty, fromListWith, insertWith)
-import GHC.Num (Num)
-
 numDepthIncreases :: Ord a => [a] -> Int
 numDepthIncreases = numDepthIncreases' 0
   where
@@ -18,7 +15,7 @@ numDepthIncreases = numDepthIncreases' 0
     numDepthIncreases' acc' (x : x' : xs') =
       if x' > x
         then numDepthIncreases' (acc' + 1) (x' : xs')
-        else numDepthIncreases' (acc') (x' : xs')
+        else numDepthIncreases' acc' (x' : xs')
 
 measurementSums :: (Ord a, Num p, Num a) => Int -> [a] -> p
 measurementSums _ [] = 0
