@@ -1,7 +1,7 @@
 module Main where
 
 import Control.Monad
-import Lib (Command, getPos)
+import Lib (Command, getPos, getPos')
 import System.IO
 
 main :: IO ()
@@ -15,6 +15,10 @@ main = do
   let pos@(h, d) = getPos commands
   putStrLn $ "Pos: " ++ (show pos)
   putStrLn $ "Horizontal * Depth: " ++ show (h * d)
+
+  let pos'@(h', d') = getPos' commands
+  putStrLn $ "Pos': " ++ (show pos')
+  putStrLn $ "Horizontal' * Depth': " ++ show (h' * d')
   where
     readCommands :: [String] -> [Command]
     readCommands = map read

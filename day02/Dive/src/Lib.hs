@@ -1,6 +1,7 @@
 module Lib
   ( getPos,
     Command (..),
+    getPos',
   )
 where
 
@@ -34,3 +35,11 @@ getPos =
     accum (hpos, depth) (Forward x) = (hpos + x, depth)
     accum (hpos, depth) (Up x) = (hpos, depth - x)
     accum (hpos, depth) (Down x) = (hpos, depth + x)
+
+getPos' :: [Command] -> (Int, Int)
+getPos' cs = (hpos, depth)
+  where
+    (hpos, depth, _) = foldl accum (0, 0, 0) cs
+    accum (hpos, depth, aim) (Forward x) = (hpos + x, depth + (aim * x), aim)
+    accum (hpos, depth, aim) (Up x) = (hpos, depth, aim - x)
+    accum (hpos, depth, aim) (Down x) = (hpos, depth, aim + x)
