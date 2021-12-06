@@ -4,9 +4,8 @@ import Control.Monad
 import Data.Char (digitToInt, isSpace)
 import Data.List (dropWhileEnd)
 import Data.Maybe
-import GHC.Exception (throw)
 import Lib
-import Lib (BinaryNum, stringToBn)
+
 import System.IO
 
 main :: IO ()
@@ -16,7 +15,8 @@ main = do
 
   let diagnostics = readDiagnostics $ lines contents
 
-  putStrLn $ show diagnostics
+  let pc = getPowerConsumption diagnostics
+  putStrLn $ "The power consumption is: " ++ show pc
   where
     readDiagnostics :: [String] -> [BinaryNum]
     readDiagnostics nums = if all isJust res then map fromJust res else error "Invalid"
