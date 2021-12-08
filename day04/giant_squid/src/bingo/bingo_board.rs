@@ -2,11 +2,13 @@ pub type BingoBoard = [BingoRow; 5];
 pub type BingoRow = [u8; 5];
 
 pub fn has_bingo(board: &BingoBoard, numbers_called: &Vec<u8>) -> Option<BingoRow> {
-    todo!();
+    has_horizontal_line(&board, &numbers_called)
+        .or(has_vertical_line(&board, &numbers_called))
+        //.or(has_diagonal_line(&board, &numbers_called));
 }
 
 fn has_horizontal_line(board: &BingoBoard, numbers_called: &Vec<u8>) -> Option<BingoRow> {
-    has_winning_row(&board.to_vec(), numbers_called)
+    has_winning_row(&board.to_vec(), &numbers_called)
 }
 
 fn has_vertical_line(board: &BingoBoard, numbers_called: &Vec<u8>) -> Option<BingoRow> {
@@ -16,7 +18,7 @@ fn has_vertical_line(board: &BingoBoard, numbers_called: &Vec<u8>) -> Option<Bin
             rows_to_check[j][i] = *v;
         }
     }
-    has_winning_row(&rows_to_check.to_vec(), numbers_called)
+    has_winning_row(&rows_to_check.to_vec(), &numbers_called)
 }
 
 fn has_diagonal_line(board: &BingoBoard, numbers_called: &Vec<u8>) -> Option<BingoRow> {
@@ -26,15 +28,15 @@ fn has_diagonal_line(board: &BingoBoard, numbers_called: &Vec<u8>) -> Option<Bin
             let right_idx = row.len() - i - 1;
             if j == i {
                 rows_to_check[0][i] = *num;
-            } 
-            
+            }
+
             if j == right_idx {
                 rows_to_check[1][i] = *num;
             }
         }
     }
 
-    has_winning_row(&rows_to_check.to_vec(), numbers_called)
+    has_winning_row(&rows_to_check.to_vec(), &numbers_called)
 }
 
 fn has_winning_row(rows_to_check: &Vec<BingoRow>, numbers_called: &Vec<u8>) -> Option<BingoRow> {
